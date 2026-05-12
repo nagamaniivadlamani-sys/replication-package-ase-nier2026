@@ -185,36 +185,3 @@ acc_b, pre_b, rec_b, f1_b = metrics(df["Baseline"])
 print("\nIM-CED:", acc_i, pre_i, rec_i, f1_i)
 print("Baseline:", acc_b, pre_b, rec_b, f1_b)
 
-# -----------------------------
-# CONFUSION MATRIX
-# -----------------------------
-cm = confusion_matrix(df["GroundTruth"], df["IMCED"])
-
-plt.figure()
-plt.imshow(cm)
-plt.title("Confusion Matrix")
-plt.xlabel("Predicted")
-plt.ylabel("Actual")
-
-for i in range(len(cm)):
-    for j in range(len(cm[0])):
-        plt.text(j, i, cm[i][j], ha='center')
-
-plt.savefig("confusion_matrix.png")
-
-# -----------------------------
-# METRICS GRAPH
-# -----------------------------
-plt.figure()
-vals = [acc_i, pre_i, rec_i, f1_i]
-labels = ["Accuracy","Precision","Recall","F1"]
-
-plt.bar(labels, vals)
-
-for i, v in enumerate(vals):
-    plt.text(i, v, f"{v:.3f}", ha='center')
-
-plt.title("IM-CED Metrics")
-plt.savefig("metrics.png")
-
-print("\nDone. Graphs saved.")
